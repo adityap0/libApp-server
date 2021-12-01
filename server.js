@@ -13,10 +13,9 @@ const {
 dotenv.config();
 
 const server = http.createServer((req, res) => {
-  
   var path = url.parse(req.url).pathname;
   const id = req.url.split("/")[3];
-  if (req.url === "/api/books/" && req.method === "GET") {
+  if (req.url === "/api/books" && req.method === "GET") {
     getBooks(req, res);
   } else if (path === `/api/books/${id}` && req.method === "GET") {
     getBook(req, res, id);
@@ -24,7 +23,7 @@ const server = http.createServer((req, res) => {
     delBook(req, res, id);
   } else if (path === `/api/books/${id}` && req.method === "PUT") {
     editBook(req, res, id);
-  } else if (path === "/api/books/" && req.method === "POST") {
+  } else if (path === "/api/books" && req.method === "POST") {
     createBook(req, res);
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
