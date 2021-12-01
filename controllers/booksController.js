@@ -47,8 +47,7 @@ async function createBook(req, res) {
         author,
       };
       const newBook = await Book.create(book);
-
-      res.writeHead(201, headers);
+      res.writeHead(200, headers);
       res.end(JSON.stringify(newBook));
     });
   } catch (error) {
