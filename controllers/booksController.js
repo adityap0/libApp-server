@@ -23,6 +23,7 @@ async function getBook(req, res, id) {
       res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
@@ -46,6 +47,7 @@ async function createBook(req, res) {
         author,
       };
       const newBook = await Book.create(book);
+      res.header("Access-Control-Allow-Origin", "*");
       res.writeHead(201, headers);
       res.end(JSON.stringify(newBook));
     });
@@ -61,6 +63,7 @@ async function getBook(req, res, id) {
       res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
@@ -76,6 +79,7 @@ async function delBook(req, res, id) {
       res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
+    res.header("Access-Control-Allow-Origin", "*");
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
@@ -102,6 +106,7 @@ async function editBook(req, res, id) {
         res.writeHead(404, headers);
         res.end(JSON.stringify({ message: "Book not found..." }));
       }
+      res.header("Access-Control-Allow-Origin", "*");
       res.writeHead(201, headers);
       res.end(JSON.stringify(updatedbook));
     });
