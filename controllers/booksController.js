@@ -1,10 +1,15 @@
 const Book = require("../models/Book");
+const headers = {
+  "Content-Type": "application/json",
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "OPTIONS, POST, GET",
+};
 
 //GET ALL BOOKS
 async function getBooks(req, res) {
   try {
     const books = await Book.find();
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, headers);
     res.end(JSON.stringify(books));
   } catch (error) {
     res.status(500).json(error);
@@ -15,10 +20,10 @@ async function getBook(req, res, id) {
   try {
     const book = await Book.findById(id);
     if (!book) {
-      res.writeHead(404, { "Content-Type": "application/json" });
+      res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
     res.status(500).json(error);
@@ -41,7 +46,7 @@ async function createBook(req, res) {
         author,
       };
       const newBook = await Book.create(book);
-      res.writeHead(201, { "Content-Type": "application/json" });
+      res.writeHead(201, headers);
       res.end(JSON.stringify(newBook));
     });
   } catch (error) {
@@ -53,10 +58,10 @@ async function getBook(req, res, id) {
   try {
     const book = await Book.findById(id);
     if (!book) {
-      res.writeHead(404, { "Content-Type": "application/json" });
+      res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
     res.status(500).json(error);
@@ -68,10 +73,10 @@ async function delBook(req, res, id) {
   try {
     const book = await Book.findByIdAndDelete(id);
     if (!book) {
-      res.writeHead(404, { "Content-Type": "application/json" });
+      res.writeHead(404, headers);
       res.end(JSON.stringify({ message: "Book not found..." }));
     }
-    res.writeHead(200, { "Content-Type": "application/json" });
+    res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
     res.status(500).json(error);
@@ -94,10 +99,10 @@ async function editBook(req, res, id) {
       };
       const updatedbook = await Book.findByIdAndUpdate(id, book);
       if (!updatedbook) {
-        res.writeHead(404, { "Content-Type": "application/json" });
+        res.writeHead(404, headers);
         res.end(JSON.stringify({ message: "Book not found..." }));
       }
-      res.writeHead(201, { "Content-Type": "application/json" });
+      res.writeHead(201, headers);
       res.end(JSON.stringify(updatedbook));
     });
   } catch (error) {
