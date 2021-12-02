@@ -3,6 +3,7 @@ const { MongoClient } = require("mongodb");
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const url = require("url");
+
 const {
   getBooks,
   getBook,
@@ -30,7 +31,6 @@ const server = http.createServer((req, res) => {
     res.end(JSON.stringify({ message: "Not found Mister!" }));
   }
 });
-
 mongoose
   .connect(process.env.MONGO_URL, {
     useNewUrlParser: true,

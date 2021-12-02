@@ -2,6 +2,7 @@ const Book = require("../models/Book");
 const headers = {
   "Content-Type": "application/json",
   "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
 };
 
 //GET ALL BOOKS
@@ -11,7 +12,7 @@ async function getBooks(req, res) {
     res.writeHead(200, headers);
     res.end(JSON.stringify(books));
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 //GET SINGLE BOOK BY ID
@@ -26,7 +27,7 @@ async function getBook(req, res, id) {
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 
@@ -50,7 +51,7 @@ async function createBook(req, res) {
       res.end(JSON.stringify(newBook));
     });
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 //GET SINGLE BOOK BY ID
@@ -65,7 +66,7 @@ async function getBook(req, res, id) {
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 
@@ -81,7 +82,7 @@ async function delBook(req, res, id) {
     res.writeHead(200, headers);
     res.end(JSON.stringify(book));
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 //UPDATE SINGLE BOOK
@@ -109,7 +110,7 @@ async function editBook(req, res, id) {
       res.end(JSON.stringify(updatedbook));
     });
   } catch (error) {
-    res.status(500).json(error);
+    console.warn("Something went wrong.", error);
   }
 }
 
