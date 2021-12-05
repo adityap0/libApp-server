@@ -1,8 +1,8 @@
 const Book = require("../models/Book");
 const headers = {
-  "Content-Type": "application/json",
-  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Origin": "http://127.0.0.1:5500",
   "Access-Control-Allow-Methods": "GET, POST, PATCH, PUT, DELETE, OPTIONS",
+  "Access-Control-Request-Headers": "*",
 };
 
 //GET ALL BOOKS
