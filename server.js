@@ -12,7 +12,6 @@ const {
 } = require("./controllers/booksController");
 dotenv.config();
 
-
 const server = http.createServer((req, res) => {
   var path = url.parse(req.url).pathname;
   const id = req.url.split("/")[3];
@@ -26,9 +25,16 @@ const server = http.createServer((req, res) => {
     editBook(req, res, id);
   } else if (path === "/api/books" && req.method === "POST") {
     createBook(req, res);
+  } else if (req.method === "OPTIONS") {
+    const headers = {
+      "Access-Control-Allow-Origin": "*",
+      "Access-Control-Allow-Methods": "GET, POST, DELETE, PATCH, PUT, OPTIONS",
+    };
+    res.writeHead(200, headers);
+    res.end();
   } else {
     res.writeHead(404, { "Content-Type": "application/json" });
-    res.end(JSON.stringify({ message: "404 Not found" }));
+    res.end(JSON.stringify({ message: "Not found" }));
   }
 });
 mongoose
